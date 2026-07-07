@@ -12,7 +12,7 @@ export default defineConfig({
       start: { entry: "start.js" },
       router: { entry: "router.jsx" },
     }),
-    nitro({ defaultPreset: "node-server" }),
+    nitro({ preset: process.env.VERCEL ? "vercel" : "node-server" }),
     viteReact(),
   ],
   resolve: {
