@@ -1,48 +1,108 @@
-# Pathwise — AI Learning Roadmap Generator
+# PathWise AI - Frontend
 
-Full-stack app: enter a learning goal → AI generates a roadmap with modules, lessons, and quizzes → track your progress.
+PathWise AI is an intelligent learning roadmap generator that helps users achieve their educational goals. By simply entering a learning objective, the AI automatically generates a comprehensive, structured roadmap complete with modules, interactive lessons, and quizzes to track your progress.
 
-## Structure
+This repository contains the **Frontend** application, built with modern web technologies to deliver a fast, responsive, and beautiful user experience.
 
+---
+
+## 📸 Screenshots
+
+| Landing Page | Chat App |
+| ------------ | -------- |
+| ![Landing Page](landing-page.png) | ![Chat App](chat-app.png) |
+
+---
+
+## ✨ Features
+
+- **AI-Powered Roadmaps:** Instantly generate personalized learning paths based on your specific goals.
+- **Structured Learning Modules:** Roadmaps are broken down into digestible modules and individual lessons.
+- **Full-Screen Reading Mode:** Immerse yourself in the generated lesson content with a distraction-free full-screen UI.
+- **Interactive Quizzes:** Test your knowledge with dynamically generated quizzes at the end of each module.
+- **Collapsible UI:** Easily navigate through long modules and quizzes using collapsible UI elements.
+- **Progress Tracking:** Keep track of your completed lessons and quiz scores.
+- **Beautiful & Modern UI:** Built with Shadcn UI and Tailwind CSS for a premium, accessible, and responsive design.
+- **Client-Side Routing:** Lightning-fast navigation using TanStack Router.
+
+## 🛠 Tech Stack
+
+The frontend is a pure JavaScript (`.js` / `.jsx`) application utilizing:
+
+- **Framework:** [React 19](https://react.dev/)
+- **Build Tool / Dev Server:** [Vite](https://vitejs.dev/) + [Nitro](https://nitro.unjs.io/) (via TanStack Start engine)
+- **Routing:** [TanStack Router](https://tanstack.com/router/latest)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **UI Components:** [Shadcn UI](https://ui.shadcn.com/) (Radix UI + Framer Motion)
+- **Data Fetching:** [TanStack Query](https://tanstack.com/query/latest)
+- **Markdown Rendering:** `react-markdown` with `katex` (for math) and `highlight.js` (for code formatting)
+
+## 📦 Project Structure
+
+```text
+/frontend
+├── public/                 # Static assets
+├── src/
+│   ├── assets/             # Images and local assets
+│   ├── components/         # Reusable UI components (Shadcn UI, Nav, etc.)
+│   ├── lib/                # API functions and utility helpers
+│   ├── models/             # Mongoose schemas (shared structure reference)
+│   ├── routes/             # TanStack Router file-based routing
+│   │   ├── _authenticated/ # Protected routes (Dashboard, Roadmaps, Profile)
+│   │   └── index.jsx       # Landing page
+│   ├── styles.css          # Global Tailwind styles
+│   ├── server.js           # TanStack Start server entry point
+│   ├── start.js            # TanStack Start client entry point
+│   └── router.jsx          # Router configuration
+├── .env                    # Environment variables
+├── vite.config.js          # Custom Vite + Nitro configuration
+└── components.json         # Shadcn UI configuration
 ```
-/frontend   React + Vite + Tailwind + React Router (plain JS)
-/backend    Node + Express + Mongoose + JWT (plain JS)
+
+## 🚀 Installation & Setup
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- A running backend server (see the `backend` folder for instructions)
+
+### 1. Clone & Install Dependencies
+
+Open your terminal and navigate to the frontend directory:
+
+```bash
+cd frontend
+npm install
 ```
 
-Both folders are independent — the frontend talks to the backend over HTTP via `VITE_API_URL`. Swap either side without touching the other.
+### 2. Configure Environment Variables
 
-## Quick start
+Create a `.env` file in the root of the `frontend` folder (or copy from `.env.example` if available). Update the variables as needed:
 
-1. **Backend**
-   ```bash
-   cd backend
-   npm install
-   cp .env.example .env
-   # fill MONGODB_URI, JWT_SECRET, AI_BASE_URL, AI_API_KEY, AI_MODEL
-   npm run dev
-   ```
+```env
+# The port the frontend dev server will run on
+PORT=5173
 
-2. **Frontend** (new terminal)
-   ```bash
-   cd frontend
-   npm install
-   cp .env.example .env   # VITE_API_URL=http://localhost:4000
-   npm run dev
-   ```
+# The URL pointing to your running backend API
+VITE_API_URL=http://localhost:4000
+```
 
-3. Open http://localhost:5173
+### 3. Start the Development Server
 
-## AI endpoint
+```bash
+npm run dev
+```
 
-The backend calls your AI at `${AI_BASE_URL}/chat/completions` with an OpenAI-compatible body. If your endpoint uses a different shape, edit **one file**: `backend/src/utils/ai.js`.
+The application will now be running at `http://localhost:5173`. Open this URL in your browser to start exploring!
 
-## Features
+---
 
-- JWT auth (register / login)
-- AI-generated roadmaps with modules & lessons
-- Per-module quizzes
-- Progress tracking (lessons + quiz scores)
-- Prismic-inspired editorial landing page
-- Component-based architecture (every button is a component)
+## 🎨 Adding New UI Components
 
-See per-folder READMEs for details.
+This project uses [Shadcn UI](https://ui.shadcn.com/). To add new components, use the standard shadcn CLI command from the `frontend` directory. 
+
+*Note: The project is configured to use pure JavaScript/JSX, so new components will automatically be installed as `.jsx` files.*
+
+```bash
+npx shadcn@latest add [component-name]
+```
