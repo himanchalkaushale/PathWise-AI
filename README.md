@@ -94,9 +94,9 @@ Create a `.env` file in the `backend` directory with the following variables:
 PORT=4000
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_super_secret_jwt_key
-AI_BASE_URL=https://api.deepshi.ai/v1
+AI_BASE_URL=your_ai_base_url
 AI_API_KEY=your_ai_api_key
-AI_MODEL=claude-sonnet-5
+AI_MODEL=your_ai_model
 ```
 
 Start the backend server:
